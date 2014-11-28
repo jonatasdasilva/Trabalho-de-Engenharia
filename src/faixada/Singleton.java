@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import bd.Dados;
 import materiais.Materiais;
 import usuarios.AlunoGraduacao;
 import usuarios.AlunoPosGraduacao;
@@ -26,13 +27,14 @@ public class Singleton {
 	}
 	
 	
-	private static List<Usuarios>UserLista = new ArrayList<Usuarios>();
-	private static List<Materiais>MatLista = new ArrayList<Materiais>();
+	//private static List<Usuarios>UserLista = new ArrayList<Usuarios>();
+	//private static List<Materiais>MatLista = new ArrayList<Materiais>();
 	private static List<Reservas>ResLista = new ArrayList<Reservas>();
 	private static List<Emprestimo>ListaEmp = new ArrayList<Emprestimo>();
 	
 	private Usuarios usuario;
 	private Materiais material;
+	private Dados bancodedados;
 	
 	// "O Padão Singleton garante que uma classe tenha apenas uma instância e fornece um ponto global de acesso a ela."
 	private volatile static Singleton instance = null;
@@ -54,49 +56,33 @@ public class Singleton {
 	}
 
 	public void cadastrarEmprestimo(short user, short mat){
+		Iterator<Reservas> UsersIterator = ResLista.iterator();
+		while(UsersIterator.hasNext()){
+			Reservas p = (Reservas) UsersIterator.next();
+			short cod = user;
+			if(mat == p.getMaterial().getCodigo()){
+				p = (Reservas) UsersIterator;
+			}
+			if (cod == p.getUsuario().getCodigo()){
+				
+			}
+		}
 		Emprestimo Emp = new Emprestimo((short)user, (short)mat);
 		ListaEmp.add(Emp);
 	}
 	
-	public void cadastrarReserva(int user, int mat){
-		
-	}
-	
-	public void cadastrarUsuario(short user, String tipo, String nome){
-		if (tipo == "Aluno de Graduação"){
-			UserLista.add(new AlunoGraduacao(user, tipo, nome));
-		}else if(tipo == "Aluno de Pós-graduação"){
-			UserLista.add(new AlunoPosGraduacao(user, tipo, nome));
-		}else if(tipo == "Professor"){
-			UserLista.add(new Professor(user, tipo, nome));
-		}
-	}
-	
-	public void cadastrarMaterial(int mat, String titulo, String editora, String Autores, int ed, int anoP){
+	public void cadastrarReserva(short user, short mat){
 		
 	}
 	
 	public Usuarios procuraUsuario(short cod){
-		Iterator<Usuarios> i = UserLista.iterator();
-		while(i.hasNext()){
-			Usuarios element = (Usuarios) i.next();
-			if (element.getCodigo() == cod){
-				return element;
-			}
-		}
-		return null;
+		// TODO Auto-generated method stub
+		return bancodedados.getUsuarios(cod);
 	}
 
 	public Materiais procuraMaterial(short mat) {
 		// TODO Auto-generated method stub
-		Iterator<Materiais> i = MatLista.iterator();
-		while(i.hasNext()){
-			Materiais element = (Materiais) i.next();
-			if (element.getCodigo() == mat){
-				return element;
-			}
-		}
-		return null;
+		return bancodedados.getMateriais(mat);
 	}
 }
 

@@ -3,17 +3,36 @@
  */
 package funcinalidades;
 
+import materiais.Materiais;
+import usuarios.Usuarios;
+
 /**
- * @author Jônatas
+ * @author Jonatas da Silva e Romilso Santana
  *
  */
 public class Reservas {
+	Usuarios usuario;
+	Materiais material;
+
+	public Reservas(Usuarios user, Materiais mat) {
+		super();
+		// TODO Auto-generated constructor stub
+		this.usuario = user;
+		this.material = mat;
+	}
 
 	/**
-	 * @param args
+	 * @return the usuario
 	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public Usuarios getUsuario() {
+		return usuario;
 	}
+
+	/**
+	 * @return the material
+	 */
+	public Materiais getMaterial() {
+		return material;
+	}
+		
 }
