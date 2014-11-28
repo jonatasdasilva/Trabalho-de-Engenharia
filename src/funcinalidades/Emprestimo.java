@@ -3,39 +3,34 @@
  */
 package funcinalidades;
 
-import faixada.Singleton;
 import materiais.Materiais;
 import usuarios.Usuarios;
 
 /**
- * @author Jônatas da Silva e Romilson Santana
+ * @author Jonatas da Silva e Romilson Santana
  *
  */
 public class Emprestimo {
-	Singleton sing = Singleton.getInstance();
+	//Singleton sing = Singleton.getInstance();
 	Usuarios usuario;
 	Materiais material;
-	short limite;
-	//short time;
-	short ex;
-	String aux;
-	//short mat;
 	/**
 	 * 
 	 */
-	public Emprestimo(short user, short mat){
-		criarEmprestimo(user, mat);
+	public Emprestimo(Usuarios user, Materiais mat){
+		this.usuario = user;
+		this.material = mat;
 	}
 	/**
-	 * @param args
+	 * @return the usuario
 	 */
-	private void criarEmprestimo(short user, short mat) {
-		// TODO Auto-generated method stub
-		usuario = sing.procuraUsuario(user);
-		material = sing.procuraMaterial(mat);
-		if (usuario.getTipo() == "Aluno de Graduação"){
-			
-		}
-		
+	public Usuarios getUsuario() {
+		return usuario;
+	}
+	/**
+	 * @return the material
+	 */
+	public Materiais getMaterial() {
+		return material;
 	}
 }

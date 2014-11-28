@@ -4,7 +4,7 @@
 package usuarios;
 
 /**
- * @author Jônatas da Silva e Romilson Santana
+ * @author Jonatas da Silva e Romilson Santana
  *
  */
 public class Professor extends Usuarios{
@@ -14,15 +14,9 @@ public class Professor extends Usuarios{
 		this.codigo = user;
 		this.tipo = tipo;
 		this.nome = nome;
+		this.qt = 1000;
 	}
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	@Override
 	public short getCodigo() {
 		// TODO Auto-generated method stub

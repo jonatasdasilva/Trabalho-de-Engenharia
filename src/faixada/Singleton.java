@@ -35,6 +35,7 @@ public class Singleton {
 	private Usuarios usuario;
 	private Materiais material;
 	private Dados bancodedados;
+	private short limite;
 	
 	// "O Padão Singleton garante que uma classe tenha apenas uma instância e fornece um ponto global de acesso a ela."
 	private volatile static Singleton instance = null;
@@ -56,23 +57,47 @@ public class Singleton {
 	}
 
 	public void cadastrarEmprestimo(short user, short mat){
-		Iterator<Reservas> UsersIterator = ResLista.iterator();
-		while(UsersIterator.hasNext()){
-			Reservas p = (Reservas) UsersIterator.next();
-			short cod = user;
+		Iterator<Reservas> ResIterator = ResLista.iterator();
+		while(ResIterator.hasNext()){
+			Reservas p = (Reservas)ResIterator.next();
 			if(mat == p.getMaterial().getCodigo()){
-				p = (Reservas) UsersIterator;
-			}
-			if (cod == p.getUsuario().getCodigo()){
-				
+				if (user == p.getUsuario().getCodigo()){
+					criarEmprestimo(p.getUsuario(), p.getMaterial());
+				}else{
+					break;
+				}
 			}
 		}
-		Emprestimo Emp = new Emprestimo((short)user, (short)mat);
-		ListaEmp.add(Emp);
+		usuario = bancodedados.getUsuarios(user);
+		material = bancodedados.getMateriais(mat);
+		criarEmprestimo(usuario, material);
 	}
 	
-	public void cadastrarReserva(short user, short mat){
+	private void criarReserva(short user, short mat){
 		
+	}
+	
+	public void criarEmprestimo(Usuarios user, Materiais mat){
+		Iterator<Emprestimo> EmpIterator = ListaEmp.iterator();
+		short ex = 0;
+		short limite = 0;
+		while(EmpIterator.hasNext()){
+			Emprestimo e = (Emprestimo)EmpIterator.next();
+			if (e.getUsuario() == user){
+				limite = (short) (limite + (e.getUsuario().getQt()));
+			}
+			if(mat == e.getMaterial()){
+				ex = (short) (ex + 1);		
+			}
+		}
+		if (((limite/user.getQt()) < user.getQt()) && (ex < mat.getEx())){
+			Emprestimo Emp = new Emprestimo(user, mat);
+			ListaEmp.add(Emp);
+		}else if (ex < mat.getEx()){
+			System.out.println("Exemplar indisponivél");
+		}else if (((limite/user.getQt()) < user.getQt())){
+			System.out.println("O usuário exedeu o limite de Emprestimos!");
+		}
 	}
 	
 	public Usuarios procuraUsuario(short cod){
