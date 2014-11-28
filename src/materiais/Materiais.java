@@ -4,7 +4,7 @@
 package materiais;
 
 /**
- * @author Jônatas da Silva e Romilson Santana
+ * @author JÃ´natas da Silva e Romilson Santana
  *
  */
 public class Materiais {
@@ -16,14 +16,23 @@ public class Materiais {
 	/**
 	 * @param args
 	 */
-	public void setCodigo(short cod) {
-		// TODO Auto-generated method stub
-		this.codigo = cod;
-	}
-	
 	public short getCodigo(){
 		return codigo;
 	}
 
-	
+	public short getEx() {
+		return ex;
+	}
+
+	public void setEx(short ex) {
+		this.ex = ex;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public short getAno() {
+		return ano;
+	}
 }
