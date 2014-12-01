@@ -17,7 +17,7 @@ public class CommandEmp implements Command{
 	public CommandEmp(String comand, short user, short mat) {
 		super();
 		// TODO Auto-generated constructor stub
-		new 
+		
 	}
 
 	public void execute(Modelo modelo){
