@@ -14,16 +14,15 @@ public class CommandEmp implements Command{
 	private short user;
 	private short mat;
 	
-	public CommandEmp(short usuario, short material) {
+	public CommandEmp(String comand, short user, short mat) {
 		super();
 		// TODO Auto-generated constructor stub
-		this.user = usuario;
-		this.mat = material;
-		execute();
+		new 
 	}
 
-	public void execute(){
-		faixada.cadastrarEmprestimo(user, mat);
-		
+	public void execute(Modelo modelo){
+		this.user = modelo.getCodigoUser();
+		this.mat = modelo.getCodigoMat();
+		faixada.cadastrarEmprestimo(user, mat);	
 	}
 }

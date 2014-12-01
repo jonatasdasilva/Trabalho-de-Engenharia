@@ -18,7 +18,7 @@ import usuarios.AlunoPosGraduacao;
 import usuarios.Usuarios;
 
 /**
- * @author Jônatas da Silva e Romilson Santana
+ * @author Jonatas da Silva e Romilson Santana
  *
  */
 public class Dados {
@@ -101,10 +101,10 @@ public class Dados {
 		
 		Iterator<Usuarios> UsersIterator = ListaUsers.iterator();
 		while(UsersIterator.hasNext()){
-			Usuarios p = (Usuarios) UsersIterator.next();
-			if (cod == p.getCodigo())
-				p = (Usuarios) UsersIterator;
-				return p;
+			Usuarios u = (Usuarios) UsersIterator.next();
+			if (cod == u.getCodigo())
+				u = (Usuarios) UsersIterator;
+				return u;
 		}
 		return null;
 	}

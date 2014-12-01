@@ -9,16 +9,18 @@ import java.util.HashMap;
  * @author Jônatas da Silva e Romilson Santana
  *
  */
-public class comandos {
+public class Comandos {
 	private HashMap commands = new HashMap();
-	
-	public comandos(){
+	private Modelo model;
+	public Comandos(){
 		iniciarComandos();
 	}
 	
 	
 	private void iniciarComandos(){
-		//commands.put("emp", new CommandEmp(codigouser, codigomat));
+		String codigouser;
+		short codigomat;
+		//commands.put(new CommandEmp("emp", codigouser, codigomat));
 		//commands.put("dev", new CommandDev());
 		//commands.put("res", new CommandRes());
 		//commands.put("mat", new CommandMat());
