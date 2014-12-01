@@ -6,7 +6,7 @@ package comandos;
 import faixada.Singleton;
 
 /**
- * @author Jônatas da Silva e Romilson Santana
+ * @author Jonatas da Silva e Romilson Santana
  *
  */
 public class CommandEmp implements Command{
