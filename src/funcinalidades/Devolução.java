@@ -1,7 +1,7 @@
 /**
  * 
  */
-package comandos;
+package funcinalidades;
 
 /**
  * @author Jônatas

@@ -179,4 +179,3 @@ public class Singleton {
 		return bancodedados.getMateriais(mat);
 	}
 }
-

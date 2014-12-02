@@ -30,7 +30,7 @@ public class Emprestimo {
 		}
 	}
 	/**
-	 * @return the usuario
+	 * @return the usuario 
 	 */
 	public Usuarios getUsuario() {
 		return usuario;
