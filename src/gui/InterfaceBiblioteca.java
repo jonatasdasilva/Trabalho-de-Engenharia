@@ -5,7 +5,9 @@ package gui;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
+import bd.Dados;
 import faixada.Singleton;
 import usuarios.Usuarios;
 /**
@@ -14,6 +16,10 @@ import usuarios.Usuarios;
  */
 public class InterfaceBiblioteca {
 	Singleton faixada = Singleton.getInstance();
+	Scanner ler = new Scanner(System.in);
+	String comando;
+	short user;
+	short mat;
 	/**
 	 * @param args
 	 */
@@ -21,5 +27,4 @@ public class InterfaceBiblioteca {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

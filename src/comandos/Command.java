@@ -3,6 +3,8 @@
  */
 package comandos;
 
+import faixada.Singleton;
+
 /**
  * @author Jonatas da Silva e Romilson Santana
  *
@@ -10,5 +12,5 @@ package comandos;
 
 //Interface com o método execute, seguindo o padrão command.
 public interface Command {
-	public void execute(Modelo modelo);
+	public void execute();
 }

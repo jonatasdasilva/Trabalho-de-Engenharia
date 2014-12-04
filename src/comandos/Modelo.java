@@ -7,6 +7,7 @@ package comandos;
  * @author Jônatas da Silva
  *
  */
+//Classe que detém os dados fornecidos pelo usuário.
 public class Modelo {
 	private String comando;
 	private short codigoUser;

@@ -4,7 +4,7 @@
 package funcinalidades;
 
 /**
- * @author Jônatas
+ * @author Jonatas da Silva e romilson Santana
  *
  */
 public class Devolução {

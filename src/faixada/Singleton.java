@@ -13,6 +13,7 @@ import usuarios.AlunoGraduacao;
 import usuarios.AlunoPosGraduacao;
 import usuarios.Professor;
 import usuarios.Usuarios;
+import funcinalidades.Consultas;
 import funcinalidades.Reservas;
 import funcinalidades.Emprestimo;
 
@@ -31,7 +32,8 @@ public class Singleton {
 	
 	private Usuarios usuario;
 	private Materiais material;
-	private Dados bancodedados;
+	private Consultas consulta;
+	private Dados bancodedados = new Dados();
 	private short limite;
 	
 	// "O Padão Singleton garante que uma classe tenha apenas uma instância e fornece um ponto global de acesso a ela."
@@ -61,12 +63,12 @@ public class Singleton {
 		usuario = bancodedados.getUsuarios(user);
 		material = bancodedados.getMateriais(mat);
 		while(ResIterator.hasNext()){
-			Reservas p = (Reservas)ResIterator.next();
-			if(material == p.getMaterial()){
+			Reservas r = (Reservas)ResIterator.next();
+			if(material == r.getMaterial()){
 				achou = (short) (achou + 1);
-				if (usuario == p.getUsuario()){
+				if (usuario == r.getUsuario()){
 					criarEmprestimo(usuario, material);
-					ResLista.remove(p);
+					ResLista.remove(r);
 				}else{
 					achou = (short) (achou + 1);
 				}
@@ -167,9 +169,9 @@ public class Singleton {
 	/**
 	 * @param args
 	 */
-	public Usuarios procuraUsuario(short cod){
+	public Usuarios procuraUsuario(short user){
 		// TODO Auto-generated method stub
-		return bancodedados.getUsuarios(cod);
+		return bancodedados.getUsuarios(user);
 	}
 	/**
 	 * @param args
@@ -177,5 +179,14 @@ public class Singleton {
 	public Materiais procuraMaterial(short mat) {
 		// TODO Auto-generated method stub
 		return bancodedados.getMateriais(mat);
+	}
+	
+	public void consultaUsuario(short user){
+		// TODO Auto-generated method stub
+		consulta.listaConsultaDeUsuario(user);
+	}
+	public void consultaMaterial(short mat) {
+		// TODO Auto-generated method stub
+		consulta.listaConsultaDeMaterial(mat);
 	}
 }

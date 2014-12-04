@@ -1,7 +1,7 @@
 package materiais;
 
 /**
- * @author Jônatas da Silva e Romilson Santana
+ * @author Jonatas da Silva e Romilson Santana
  *
  */
 
