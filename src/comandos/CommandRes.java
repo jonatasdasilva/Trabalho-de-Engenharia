@@ -3,28 +3,17 @@
  */
 package comandos;
 
-import faixada.Singleton;
-
 /**
- * @author Jônatas da Silva e Romilson Santana
+ * @author Jonatas da Silva e Romilson Santana
  *
  */
 public class CommandRes implements Command{
-	Singleton faixada = null;
-	private Modelo model;
-	private short user;
-	private short mat;
-	
-	public CommandRes(Modelo mod) {
-		//super();
-		// TODO Auto-generated constructor stub
-		this.model = mod;
-		faixada = Singleton.getInstance();
+
+	@Override
+	public String execute(Modelo model) {
+		return null;
+		// TODO Auto-generated method stub
+		
 	}
 
-	public void execute(){
-		this.user = model.getCodigoUser();
-		this.mat = model.getCodigoMat();
-		faixada.cadastrarReserva(user, mat);
-	}
 }
