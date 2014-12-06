@@ -29,6 +29,7 @@ public class InterfaceBiblioteca {
 		comandos.put("usu", new CommandUsu());
 		comandos.put("mat", new CommandMat());
 		System.out.println("Comandos inseridos");
+		
 	}
 	/**
 	 * @param args
