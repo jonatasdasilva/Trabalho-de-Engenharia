@@ -17,7 +17,7 @@ public class Singleton {
 	
 	private Singleton() {	
 	}
-
+	//Sendo também um Facade, pois concentra todos os dados e delega certas funções para outras classes.
 	private Usuarios usuario;
 	private static Dados bancodedados;
 	
@@ -43,49 +43,63 @@ public class Singleton {
 	/**
 	 * @param args
 	 */
-	public void emprestimo(Modelo model){
-		usuario.emprestimo(model);
+	public void emprestar(int codigouser, int codigomat){
+		System.out.println("Estar no emprestar");
+		Usuarios usuario = bancodedados.getUsuarios(codigouser);
+		Materiais material = bancodedados.getMateriais(codigomat);
+		usuario.emprestimo(usuario, material);
+		System.out.println("Saiu do emprestimo");
 	}
 	
 	/**
 	 * @param args
 	 */
-	public void reservar(Modelo model){
-		usuario.reserva(model);
+	public void reservar(int codigouser, int codigomat){
+		System.out.println("Estar na Reserva!");
+		Usuarios usuario = bancodedados.getUsuarios(codigouser);
+		Materiais material = bancodedados.getMateriais(codigomat);
+		usuario.reserva(usuario, material);
 	}
 	
 	/**
 	 * @param args
 	 */
-	public void devolucao(Modelo model){
-		usuario.devolucao(model);
+	public void devolver(int codigouser, int codigomat){
+		System.out.println("Estar na Devolução!");
+		Usuarios usuario = bancodedados.getUsuarios(codigouser);
+		Materiais material = bancodedados.getMateriais(codigomat);
+		usuario.devolucao(usuario, material);
 	}
 	
 	/**
 	 * @param args
 	 */
-	public void consultaUsu(Modelo model){
-		usuario.consultasUsu(model);
+	public void consultaUsu(int codigouser){
+		System.out.println("Estar na Consulta de Usuário!");
+		Usuarios usuario = bancodedados.getUsuarios(codigouser);
+		usuario.consultasUsu(usuario);
 	}
 	
 	/**
 	 * @param args
 	 */
-	public void consultaMat(Modelo model){
-		usuario.consultasMat(model);
+	public void consultaMat(int codigomat){
+		System.out.println("Estar na Devolução!");
+		Materiais material = bancodedados.getMateriais(codigomat);
+		usuario.consultasMat(material);
 	}
 	
 	/**
 	 * @param args
 	 */
-	public Usuarios procuraUsuario(short user){
+	public Usuarios procuraUsuario(int user){
 		// TODO Auto-generated method stub
 		return bancodedados.getUsuarios(user);
 	}
 	/**
 	 * @param args
 	 */
-	public Materiais procuraMaterial(short mat) {
+	public Materiais procuraMaterial(int mat) {
 		// TODO Auto-generated method stub
 		return bancodedados.getMateriais(mat);
 	}

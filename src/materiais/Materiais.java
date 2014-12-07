@@ -9,22 +9,23 @@ package materiais;
  */
 public class Materiais {
 	String titulo;
-	short codigo;
-	short ano;
-	short ex;
+	String tipo;
+	int codigo;
+	int ano;
+	int ex;
 	
 	/**
 	 * @param args
 	 */
-	public short getCodigo(){
+	public int getCodigo(){
 		return codigo;
 	}
 
-	public short getEx() {
+	public int getEx() {
 		return ex;
 	}
 
-	public void setEx(short ex) {
+	public void setEx(int ex) {
 		this.ex = ex;
 	}
 
@@ -32,8 +33,15 @@ public class Materiais {
 		return titulo;
 	}
 
-	public short getAno() {
+	public int getAno() {
 		return ano;
+	}
+
+	/**
+	 * @return the tipo
+	 */
+	public String getTipo() {
+		return tipo;
 	}
 
 }

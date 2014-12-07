@@ -6,27 +6,25 @@ package materiais;
  */
 
 public class Revistas extends Materiais{
-
-	short edicao;
+	int edicao;
 	String mes;
 
-	public Revistas(short cod, String titulo, short edicao, String mes, short ano) {
-		super();
+	public Revistas(int cod, String titulo, int edicao, String mes, int ano) {
+		//super();
 		// TODO Auto-generated constructor stub
 		this.edicao = edicao;
 		this.codigo = cod;
 		this.titulo = titulo;
 		this.mes = mes;
 		this.ano = ano;
+		this.tipo = "REVISTA";
 	}
 	
-	public short getEdicao() {
+	public int getEdicao() {
 		return edicao;
 	}
 
 	public String getMes() {
 		return mes;
 	}
-
-	
 }

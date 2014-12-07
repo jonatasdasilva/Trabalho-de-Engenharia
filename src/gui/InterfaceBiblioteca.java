@@ -13,7 +13,7 @@ import faixada.Singleton;
  */
 public class InterfaceBiblioteca {
 	Singleton faixada = Singleton.getInstance();
-	static Modelo model = new Modelo(null, (short)0, (short)0);
+	static Modelo model = new Modelo(null, 0, 0);
 	static HashMap<String, Command> comandos = new HashMap<String, Command>();
 	/* Inicializando o hashmap dos comandos!*/
 	public static void iniciarCommands(){
@@ -31,8 +31,8 @@ public class InterfaceBiblioteca {
 	 */
 	public static void main(String[] args) {
 		Command c;
-		short user;
-		short mat;
+		int user;
+		int mat;
 		//boolean sair = false;
 		
 		// TODO Auto-generated method stub
@@ -48,47 +48,47 @@ public class InterfaceBiblioteca {
 			System.out.println(dados[2]);
 			if(dados[0].endsWith("emp")){
 				System.out.println("entrou aki");
-				user = Short.parseShort(dados[1]);
-				mat = Short.parseShort(dados[2]);
+				user = Integer.parseInt(dados[1]);
+				mat = Integer.parseInt(dados[2]);
 				model.setCodigoUser(user);
 				model.setCodigoMat(mat);
 				model.setComando(dados[0]);
 				c = (Command) comandos.get(model.getComando());
 				c.execute(model);
-			}else if (dados[0] == "res"){
-				user = Short.parseShort(dados[1]);
-				mat = Short.parseShort(dados[2]);
+			}else if (dados[0].endsWith("res")){
+				user = Integer.parseInt(dados[1]);
+				mat = Integer.parseInt(dados[2]);
 				model.setCodigoUser(user);
 				model.setCodigoMat(mat);
 				model.setComando(dados[0]);
 				c = (Command) comandos.get(model.getComando());
 				c.execute(model);
-			}else if (dados[0] == "usu"){
-				user = Short.parseShort(model.getComando());
+			}else if (dados[0].endsWith("usu")){
+				user = Integer.parseInt(dados[1]);
 				mat = 0;
 				model.setCodigoUser(user);
 				model.setCodigoMat(mat);
 				model.setComando(dados[0]);
 				c = (Command) comandos.get(model.getComando());
 				c.execute(model);
-			}else if (dados[0] == "mat"){
+			}else if (dados[0].endsWith("mat")){
 				user = 0;
-				mat = Short.parseShort(dados[2]);
+				mat = Integer.parseInt(dados[2]);
 				model.setCodigoUser(user);
 				model.setCodigoMat(mat);
 				model.setComando(dados[0]);
 				c = (Command) comandos.get(model.getComando());
 				c.execute(model);
-			}else if (dados[0] == "dev"){
-				user = Short.parseShort(dados[1]);
-				mat = Short.parseShort(dados[2]);
+			}else if (dados[0].endsWith("dev")){
+				user = Integer.parseInt(dados[1]);
+				mat = Integer.parseInt(dados[2]);
 				model.setCodigoUser(user);
 				model.setCodigoMat(mat);
 				model.setComando(dados[0]);
 				c = (Command) comandos.get(model.getComando());
 				c.execute(model);
-			}else if (dados[0] == "sair"){
-				System.out.println("Obridago, tenha um bom dia e volte sempre!");
+			}else if (dados[0].endsWith("sair")){
+				System.out.println("Obridago, tenha um bom dia, e volte sempre!");
 				break;
 			}
 		}

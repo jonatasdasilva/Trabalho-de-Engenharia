@@ -3,6 +3,7 @@
  */
 package usuarios;
 
+import materiais.Materiais;
 import comandos.Modelo;
 
 /**
@@ -10,9 +11,9 @@ import comandos.Modelo;
  *
  */
 public interface Strategy {
-	public void emprestimo(Modelo model);
-	public void reserva(Modelo model);
-	public void consultasUsu(Modelo model);
-	public void consultasMat(Modelo model);
-	public void devolucao(Modelo model);
+	public void emprestimo(Usuarios user, Materiais mat);
+	public void reserva(Usuarios user, Materiais mat);
+	public void consultasUsu(Usuarios user);
+	public void consultasMat(Materiais mat);
+	public void devolucao(Usuarios user, Materiais mat);
 }

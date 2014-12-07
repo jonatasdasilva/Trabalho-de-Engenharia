@@ -18,16 +18,15 @@ import funcinalidades.Reservas;
  */
 
 public class Usuarios implements Strategy{
-	short codigo;
+	int codigo;
 	String nome;
 	String tipo;
 	boolean devedor;
 	int tempo;
-	Singleton faixada = Singleton.getInstance();
-	short qt; //quantidade de exemplares maxima que pode emprestar. em um metodo ele percorre a lsita de emprestimos e verifica essa variavel q decrementa ela até chegar no ficnal do loop se ela for 0 não pode mais ter emprestimo para aquele usuario.
+	int qt; //quantidade de exemplares maxima que pode emprestar. em um metodo ele percorre a lsita de emprestimos e verifica essa variavel q decrementa ela até chegar no ficnal do loop se ela for 0 não pode mais ter emprestimo para aquele usuario.
 	protected static List<Reservas>ResLista = new ArrayList<Reservas>();
 	protected static List<Emprestimo>ListaEmp = new ArrayList<Emprestimo>();
-	public short getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
 	public String getNome(){
@@ -39,7 +38,7 @@ public class Usuarios implements Strategy{
 	/**
 	 * @return the qt
 	 */
-	public short getQt() {
+	public int getQt() {
 		return qt;
 	}
 
@@ -60,30 +59,46 @@ public class Usuarios implements Strategy{
 	 */
 	private void criarReserva(Usuarios user, Materiais mat){
 	}
+
+	/* (non-Javadoc)
+	 * @see usuarios.Strategy#emprestimo(usuarios.Usuarios, materiais.Materiais)
+	 */
 	@Override
-	public void emprestimo(Modelo model) {
+	public void emprestimo(Usuarios user, Materiais mat) {
+		// TODO Auto-generated method stub
+		
+	}
+	/* (non-Javadoc)
+	 * @see usuarios.Strategy#reserva(usuarios.Usuarios, materiais.Materiais)
+	 */
+	@Override
+	public void reserva(Usuarios user, Materiais mat) {
+		// TODO Auto-generated method stub
+		
+	}
+	/* (non-Javadoc)
+	 * @see usuarios.Strategy#consultasUsu(usuarios.Usuarios)
+	 */
+	@Override
+	public void consultasUsu(Usuarios user) {
+		// TODO Auto-generated method stub
+		
+	}
+	/* (non-Javadoc)
+	 * @see usuarios.Strategy#consultasMat(materiais.Materiais)
+	 */
+	@Override
+	public void consultasMat(Materiais mat) {
+		// TODO Auto-generated method stub
+		
+	}
+	/* (non-Javadoc)
+	 * @see usuarios.Strategy#devolucao(usuarios.Usuarios, materiais.Materiais)
+	 */
+	@Override
+	public void devolucao(Usuarios user, Materiais mat) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void reserva(Modelo model) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void consultasUsu(Modelo model) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void consultasMat(Modelo model) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void devolucao(Modelo model) {
-		// TODO Auto-generated method stub
-		
-	}
 }

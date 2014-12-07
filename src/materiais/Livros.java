@@ -10,8 +10,8 @@ public class Livros extends Materiais{
 	String autores;
 	String edicao;
 	
-	public Livros(short cod, String nome, String editora, String autores, String edicao, short ano, short ex) {
-		super();
+	public Livros(int cod, String nome, String editora, String autores, String edicao, int ano, int ex) {
+		//super();
 		// TODO Auto-generated constructor stub
 		this.codigo = cod;
 		this.titulo = nome;
@@ -19,6 +19,7 @@ public class Livros extends Materiais{
 		this.edicao = edicao;
 		this.ano = ano;
 		this.ex = ex;
+		this.tipo = "LIVRO";
 	}
 
 	/**

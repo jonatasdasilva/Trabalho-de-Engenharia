@@ -16,10 +16,10 @@ import funcinalidades.Reservas;
  * @author Jonatas da Silva e Romilson Santana
  *
  */
-public class AlunoGraduacao extends Usuarios{
-	private short qt;
+public class AlunoGraduacao extends Usuarios implements Strategy{
+	Singleton faixada = Singleton.getInstance();
 	
-	public AlunoGraduacao(short user, String tipo, String nome) {
+	public AlunoGraduacao(int user, String tipo, String nome) {
 		// TODO Auto-generated constructor stub
 		this.codigo = user;
 		this.tipo = tipo;
@@ -32,14 +32,14 @@ public class AlunoGraduacao extends Usuarios{
 	/**
 	 * @return the qt
 	 */
-	public short getQt() {
+	public int getQt() {
 		return qt;
 	}
 
 	/**
 	 * @return the codigo
 	 */
-	public short getCodigo() {
+	public int getCodigo() {
 		// TODO Auto-generated method stub
 		return codigo;
 	}
@@ -64,130 +64,174 @@ public class AlunoGraduacao extends Usuarios{
 		// TODO Auto-generated method stub
 		return tipo;
 	}
-	
+	/* (non-Javadoc)
+	 * @see usuarios.Strategy#emprestimo(usuarios.Usuarios, materiais.Materiais)
+	 */
+	@SuppressWarnings("deprecation")
 	@Override
-	public void emprestimo(Modelo model) {
+	public void emprestimo(Usuarios user, Materiais mat) {
 		// TODO Auto-generated method stub
-		Singleton faixada = Singleton.getInstance();
+		System.out.println("Estar no emprestimo");
 		Iterator<Reservas> ResIterator = ResLista.iterator();
-		short achou = 0;
+		int achou = 0;
+		@SuppressWarnings("unused")
 		boolean resOK = true;
 		boolean resU = false;
 		while(ResIterator.hasNext()){
 			Reservas r = (Reservas)ResIterator.next();
-			if(model.getCodigoMat() == r.getMaterial().getCodigo()){
-				if (model.getCodigoUser() == r.getUsuario().getCodigo()){
+			if(mat == r.getMaterial()){
+				if (user == r.getUsuario()){
 					if (r.isEmprestimo() == false){
 						r.setEmprestimo(true);
 						resU = true;
 						//criarEmprestimo(r.getUsuario(), r.getMaterial());
 					}
 				}else{
-					achou = (short) (achou + 1);
+					achou = (achou + 1);
 				}
 			}
 		}
-		if (achou < faixada.procuraMaterial(model.getCodigoMat()).getEx()){
+		if (achou < mat.getEx()){
 			resOK = false;
 		}
 		Iterator<Emprestimo> EmpIterator = ListaEmp.iterator();
-		short ex = 0;
-		short limite = 0;
+		int ex = 0;
+		int limite = 0;
 		boolean emprestado = false;
 		while(EmpIterator.hasNext()){
 			Emprestimo e = (Emprestimo)EmpIterator.next();
-			if (e.getUsuario().getCodigo() == model.getCodigoUser()){
-				limite = (short) (limite + (e.getUsuario().getQt()));
+			if (e.getUsuario() == user){
+				limite = (limite + (e.getUsuario().getQt()));
 				Date tempo = e.getDiadoemprestimo();
 				Date data = new Date();
+				@SuppressWarnings("unused")
+				int atual = data.getDate();
 				if(data.getDate()>=(tempo.getDate() + e.getUsuario().getTempo())){
 					devedor = true;
 				}
 			}
-			if(model.getCodigoMat() == e.getMaterial().getCodigo()){
-				ex = (short) (ex + 1);	
+			if(mat == e.getMaterial()){
+				ex = (ex + 1);	
 			}
-			if ((model.getCodigoMat() == e.getMaterial().getCodigo()) && (e.getUsuario().getCodigo() == model.getCodigoUser())){
+			if ((mat == e.getMaterial()) && (e.getUsuario() == user)){
 				emprestado = true;
 			}
 		}
 		if (resU){
 			if (!(devedor)){
 				if (!(emprestado)){
-					if(ex < faixada.procuraMaterial(model.getCodigoMat()).getEx()){
-						if ((limite/faixada.procuraUsuario(model.getCodigoUser()).getQt()) < faixada.procuraUsuario(model.getCodigoUser()).getQt()){
-							criarEmprestimo(faixada.procuraUsuario(model.getCodigoUser()), faixada.procuraMaterial(model.getCodigoMat()));
+					if(ex < mat.getEx()){
+						if ((limite/user.getQt()) < user.getQt()){
+							criarEmprestimo(user, mat);
 						}else{
-							System.out.println("O usuário: "+faixada.procuraUsuario(model.getCodigoUser()).getNome()+" exedeu o limite de Emprestimos!\n"+"Então não foi possivél efetuar o emprestimo de: "+ faixada.procuraMaterial(model.getCodigoMat()).getTitulo());
+							System.out.println("O usuário: "+user.getNome()+" exedeu o limite de Emprestimos!\n"+"Então não foi possivél efetuar o emprestimo de: "+ mat.getTitulo());
 						}
 					}else{
-						System.out.println("O usuário: "+faixada.procuraUsuario(model.getCodigoUser()).getNome()+" não pôde fazer o emprestimo de: "+ faixada.procuraMaterial(model.getCodigoMat()).getTitulo()+", pois não existe exemplares disponíveis!");
+						System.out.println("O usuário: "+user.getNome()+" não pôde fazer o emprestimo de: "+ mat.getTitulo()+", pois não existe exemplares disponíveis!");
 					}
 				}else{
-					System.out.println("O usuário: "+faixada.procuraUsuario(model.getCodigoUser()).getNome()+" não pode fazer novo emprestimo para: "+ faixada.procuraMaterial(model.getCodigoMat()).getTitulo()+", pois não existe registro de devolução!");
+					System.out.println("O usuário: "+user.getNome()+" não pode fazer novo emprestimo para: "+ mat.getTitulo()+", pois não existe registro de devolução!");
 				}
 			}else{
-				System.out.println("O usuário: "+faixada.procuraUsuario(model.getCodigoUser()).getNome()+" não pôde fazer o emprestimo de: "+ faixada.procuraMaterial(model.getCodigoMat()).getTitulo()+", pois estar com atraso na devolução!");
+				System.out.println("O usuário: "+user.getNome()+" não pôde fazer o emprestimo de: "+ mat.getTitulo()+", pois estar com atraso na devolução!");
 			}
 		}else{
-			if((achou + ex)< faixada.procuraMaterial(model.getCodigoMat()).getEx()){
+			if((achou + ex)< mat.getEx()){
 				if(!(devedor)){
 					if(!(emprestado)){
-						criarEmprestimo(faixada.procuraUsuario(model.getCodigoUser()), faixada.procuraMaterial(model.getCodigoMat()));
+						criarEmprestimo(user, mat);
 					}else{
-						System.out.println("O usuário: "+faixada.procuraUsuario(model.getCodigoUser()).getNome()+" não pode fazer novo emprestimo para: "+ faixada.procuraMaterial(model.getCodigoMat()).getTitulo()+", pois não existe registro de devolução!");
+						System.out.println("O usuário: "+user.getNome()+" não pode fazer novo emprestimo para: "+ mat.getTitulo()+", pois não existe registro de devolução!");
 					}
 				}else{
-					System.out.println("O usuário: "+faixada.procuraUsuario(model.getCodigoUser()).getNome()+" não pôde fazer o emprestimo de: "+ faixada.procuraMaterial(model.getCodigoMat()).getTitulo()+", pois estar com atraso na devolução!");
+					System.out.println("O usuário: "+user.getNome()+" não pôde fazer o emprestimo de: "+ mat.getTitulo()+", pois estar com atraso na devolução!");
 				}
 			}else{
-				System.out.println("O usuário: "+faixada.procuraUsuario(model.getCodigoUser()).getNome()+" não pôde fazer o emprestimo de: "+ faixada.procuraMaterial(model.getCodigoMat()).getTitulo()+", pois não existe exemplar disponível!");
+				System.out.println("O usuário: "+user.getNome()+" não pôde fazer o emprestimo de: "+mat.getTitulo()+", pois não existe exemplar disponível!");
 			}
 		}
 	}
+	/* (non-Javadoc)
+	 * @see usuarios.Strategy#reserva(usuarios.Usuarios, materiais.Materiais)
+	 */
 	@Override
-	public void reserva(Modelo model) {
-		// TODO Auto-generated method stub
-		Singleton faixada = Singleton.getInstance();
+	public void reserva(Usuarios user, Materiais mat) {
 		Iterator<Reservas> ResIterator = ResLista.iterator();
-		short bloc = 0;
+		int bloc = 0;
 		while(ResIterator.hasNext()){
 			Reservas r = (Reservas)ResIterator.next();
-			if(model.getCodigoMat() == r.getMaterial().getCodigo()){
-				if (model.getCodigoUser() == r.getUsuario().getCodigo()){
-					System.out.println(faixada.procuraMaterial(model.getCodigoMat()).getTitulo()+" não pode ser reservado, pois o usuário: \""+faixada.procuraUsuario(model.getCodigoUser()).getNome()+"\" já possui esta reserva!");
+			if(mat == r.getMaterial()){
+				if (user == r.getUsuario()){
+					System.out.println(mat.getTitulo()+" não pode ser reservado, pois o usuário: \""+user.getNome()+"\" já possui esta reserva!");
 				}
 			}
-			if (model.getCodigoUser() == r.getUsuario().getCodigo()){
-				bloc = (short) (bloc + 1);
+			if (user == r.getUsuario()){
+				bloc = (bloc + 1);
 			}
 		}
 		if(bloc < 3){
-			criarReserva(faixada.procuraUsuario(model.getCodigoUser()), faixada.procuraMaterial(model.getCodigoMat()));
+			criarReserva(user, mat);
 		}else{
-			System.out.println(faixada.procuraMaterial(model.getCodigoMat()).getTitulo()+" não pôde ser reservado, pois o usuáriio: "+faixada.procuraUsuario(model.getCodigoUser()).getNome()+" já chegou a cota máxima de reservas!");
+			System.out.println("O exemplar de: "+mat.getTitulo()+" não pôde ser reservado, pois o usuáriio: "+user.getNome()+" já chegou a cota máxima de reservas!");
 		}
 	}
+	/* (non-Javadoc)
+	 * @see usuarios.Strategy#consultasUsu(usuarios.Usuarios)
+	 */
+	@SuppressWarnings("deprecation")
 	@Override
-	public void consultasUsu(Modelo model) {
+	public void consultasUsu(Usuarios user) {
+		// TODO Auto-generated method stub
+		Iterator<Emprestimo> EmpIterator = ListaEmp.iterator();
+		System.out.println("Os emprestimos do usuário são:");
+		while(EmpIterator.hasNext()){
+			String status = null;
+			Emprestimo e = (Emprestimo)EmpIterator.next();
+			if(user == e.getUsuario()){
+				Date tempo = e.getDiadoemprestimo();
+				Date previsto = e.getDiadadevolucao();
+				if (previsto == null){
+					previsto = tempo;
+					previsto.setDate(tempo.getDate()+e.getUsuario().getTempo());
+					
+					if(e.isDevolvido() == false){
+						status = "Em curso";
+					}else{
+						status = "Finalizado";
+					}
+				}
+				System.out.println("| "+e.getMaterial().getTitulo()+" | "+e.getMaterial().getTipo()+" | "+tempo.toLocaleString()+" | "+status+" | "+previsto.toLocaleString());
+			}
+		}
+		Iterator<Reservas> ResIterator = ResLista.iterator();
+		System.out.println("As reservas do usuário são:");
+		while(ResIterator.hasNext()){
+			Reservas r = (Reservas)ResIterator.next();
+			System.out.println("| "+r.getMaterial().getTitulo()+" | "+r.getData().toLocaleString());
+		}
+	}
+	/* (non-Javadoc)
+	 * @see usuarios.Strategy#consultasMat(materiais.Materiais)
+	 */
+	@Override
+	public void consultasMat(Materiais mat) {
 		// TODO Auto-generated method stub
 		
 	}
+	/* (non-Javadoc)
+	 * @see usuarios.Strategy#devolucao(usuarios.Usuarios, materiais.Materiais)
+	 */
 	@Override
-	public void consultasMat(Modelo model) {
-		// TODO Auto-generated method stub
-		
-	}
-	@Override
-	public void devolucao(Modelo model) {
+	public void devolucao(Usuarios user, Materiais mat) {
 		// TODO Auto-generated method stub
 		Iterator<Emprestimo> EmpIterator = ListaEmp.iterator();
 		while(EmpIterator.hasNext()){
 			Emprestimo e = (Emprestimo)EmpIterator.next();
-			if (e.getUsuario() == faixada.procuraUsuario(model.getCodigoUser())){
-				if(faixada.procuraMaterial(model.getCodigoMat()) == e.getMaterial()){
+			if (e.getUsuario() == user){
+				if(mat == e.getMaterial()){
 					e.setDevolvido(true);
-					System.out.println(faixada.procuraMaterial(model.getCodigoMat()).getTitulo()+" foi devolvido com sucesso!\n"+"Obrigado "+faixada.procuraUsuario(model.getCodigoUser()).getNome()+", volte sempre!");
+					e.setDiadadevolucao(new Date());
+					System.out.println(mat.getTitulo()+" foi devolvido com sucesso!\n"+"Obrigado "+user.getNome()+", volte sempre!");
 				}
 			}
 			
@@ -198,6 +242,7 @@ public class AlunoGraduacao extends Usuarios{
 	 * @param args
 	 */	
 	public void criarEmprestimo(Usuarios user, Materiais mat){
+		System.out.println("Estar no Criar emprestimo");
 		Emprestimo Emp = new Emprestimo(user, mat);
 		ListaEmp.add(Emp);
 		System.out.println("O emprestimo foi efetuado!\n"+"De "+mat.getTitulo()+", para o usuário: "+user.getNome()+", Obrigado e volte sempre!");

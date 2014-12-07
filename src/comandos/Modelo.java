@@ -9,15 +9,13 @@ package comandos;
  */
 public class Modelo {
 	private String comando;
-
-
-	private short codigoUser;
-	private short codigoMat;
+	private int codigoUser;
+	private int codigoMat;
 	
 	/**
 	 * 
 	 */
-	public Modelo(String command, short codU, short codM) {
+	public Modelo(String command, int codU, int codM) {
 		// TODO Auto-generated constructor stub
 		this.comando = command;
 		this.codigoUser = codU;
@@ -37,19 +35,19 @@ public class Modelo {
 		this.comando = comando;
 	}
 
-	public short getCodigoUser() {
+	public int getCodigoUser() {
 		return codigoUser;
 	}
 
-	public short getCodigoMat() {
+	public int getCodigoMat() {
 		return codigoMat;
 	}
 	
-	public void setCodigoUser(short user){
+	public void setCodigoUser(int user){
 		this.codigoUser = user;
 	}
 	
-	public void setCodigoMat(short mat){
+	public void setCodigoMat(int mat){
 		this.codigoMat = mat;
 	}
 }

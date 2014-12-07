@@ -7,28 +7,29 @@ package materiais;
 
 public class Dvd extends Materiais{
 	String autores;
-	short ano;
-	short regiao;
+	int ano;
+	int regiao;
 
-	public Dvd(short cod, String titulo, String autores, short ano, short regiao) {
-		super();
+	public Dvd(int cod, String titulo, String autores, int ano, int regiao) {
+		//super();
 		// TODO Auto-generated constructor stub
 		this.codigo = cod;
 		this.titulo = titulo;
 		this.autores = autores;
 		this.ano = ano;
 		this.regiao = regiao;
+		this.tipo = "DVD";
 	}
 
 	public String getAutores() {
 		return autores;
 	}
 
-	public short getAno() {
+	public int getAno() {
 		return ano;
 	}
 
-	public short getRegiao() {
+	public int getRegiao() {
 		return regiao;
 	}
 

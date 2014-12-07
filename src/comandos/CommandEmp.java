@@ -6,7 +6,7 @@ package comandos;
 import faixada.Singleton;
 
 /**
- * @author Jônatas da Silva e Romilson Santana
+ * @author Jonatas da Silva e Romilson Santana
  *
  */
 public class CommandEmp implements Command{	
@@ -14,8 +14,9 @@ public class CommandEmp implements Command{
 	}
 
 	public void execute(Modelo model){
+		// TODO Auto-generated method stub
 		Singleton faixada = Singleton.getInstance();
-		System.out.println("PASSOU! Command");
-		faixada.emprestimo(model);
+		System.out.println("PASSOU! CommandEmp");
+		faixada.emprestar(model.getCodigoUser(), model.getCodigoMat());
 	}
 }

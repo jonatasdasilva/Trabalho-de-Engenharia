@@ -3,7 +3,7 @@
  */
 package funcinalidades;
 
-import java.util.Date;
+import java.util.*;
 
 import materiais.Materiais;
 import usuarios.Usuarios;
@@ -27,6 +27,8 @@ public class Emprestimo {
 		this.material = mat;
 		this.devolvido = false;
 		this.diadoemprestimo = new Date();
+		this.diadadevolucao = null;
+		this.devolvido = false;
 	}
 	/**
 	 * @return the diadoemprestimo
