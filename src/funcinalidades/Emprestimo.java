@@ -16,7 +16,8 @@ public class Emprestimo {
 	//Singleton sing = Singleton.getInstance();
 	Usuarios usuario;
 	Materiais material;
-	Date tempo;
+	Date diadoemprestimo;
+	Date diadadevolucao;
 	boolean devolvido;
 	/**
 	 * 
@@ -25,13 +26,25 @@ public class Emprestimo {
 		this.usuario = user;
 		this.material = mat;
 		this.devolvido = false;
-		this.tempo = new Date();
+		this.diadoemprestimo = new Date();
 	}
 	/**
-	 * @return the tempo
+	 * @return the diadoemprestimo
 	 */
-	public Date getTempo() {
-		return tempo;
+	public Date getDiadoemprestimo() {
+		return diadoemprestimo;
+	}
+	/**
+	 * @return the diadadevolucao
+	 */
+	public Date getDiadadevolucao() {
+		return diadadevolucao;
+	}
+	/**
+	 * @param diadadevolucao the diadadevolucao to set
+	 */
+	public void setDiadadevolucao(Date diadadevolucao) {
+		this.diadadevolucao = diadadevolucao;
 	}
 	/**
 	 * @return the devolvido

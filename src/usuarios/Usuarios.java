@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
+import comandos.Modelo;
+
 import materiais.Materiais;
 import faixada.Singleton;
 import funcinalidades.Emprestimo;
@@ -15,7 +17,7 @@ import funcinalidades.Reservas;
  *
  */
 
-public class Usuarios {
+public class Usuarios implements Strategy{
 	short codigo;
 	String nome;
 	String tipo;
@@ -40,36 +42,48 @@ public class Usuarios {
 	public short getQt() {
 		return qt;
 	}
+
 	/**
-	 * @param args
+	 * @return the tempo
 	 */
-	public String cadastrarEmprestimo(short user, short mat){
-		return null;
+	public int getTempo() {
+		return tempo;
 	}
 	/**
 	 * @param args
 	 */	
-	public String criarEmprestimo(Usuarios user, Materiais mat){
-		return null;
+	public void criarEmprestimo(Usuarios user, Materiais mat){
 	}
-	/**
-	 * @param args
-	 */
-	public String cadastrarReserva(short user, short mat){
-		return null;
-	}
-	/**
-	 * @param args
-	 */
-	public String devolver(short user, short mat){
-		return null;
-	}
-	
 	/**
 	 * @param args
 	 * @return 
 	 */
-	private String criarReserva(Usuarios user, Materiais mat){
-		return null;
+	private void criarReserva(Usuarios user, Materiais mat){
+	}
+	@Override
+	public void emprestimo(Modelo model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void reserva(Modelo model) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void consultasUsu(Modelo model) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void consultasMat(Modelo model) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void devolucao(Modelo model) {
+		// TODO Auto-generated method stub
+		
 	}
 }

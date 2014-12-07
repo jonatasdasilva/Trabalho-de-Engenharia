@@ -10,8 +10,7 @@ package comandos;
 public class CommandDev implements Command{
 
 	@Override
-	public String execute(Modelo model) {
-		return null;
+	public void execute(Modelo model) {
 		// TODO Auto-generated method stub
 		
 	}

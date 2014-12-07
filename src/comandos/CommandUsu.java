@@ -11,8 +11,7 @@ package comandos;
 public class CommandUsu implements Command{
 
 	@Override
-	public String execute(Modelo model) {
-		return null;
+	public void execute(Modelo model) {
 		// TODO Auto-generated method stub
 		
 	}

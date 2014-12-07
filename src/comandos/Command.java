@@ -8,6 +8,6 @@ package comandos;
  *
  */
 public interface Command {
-	public String execute(Modelo model);
+	public void execute(Modelo model);
 	
 }

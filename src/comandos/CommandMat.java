@@ -9,8 +9,7 @@ package comandos;
  */
 public class CommandMat implements Command{
 	@Override
-	public String execute(Modelo model) {
-		return null;
+	public void execute(Modelo model) {
 		
 	}
 

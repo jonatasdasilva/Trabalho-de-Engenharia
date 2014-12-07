@@ -13,11 +13,9 @@ public class CommandEmp implements Command{
 	public CommandEmp() {
 	}
 
-	public String execute(Modelo model){
+	public void execute(Modelo model){
 		Singleton faixada = Singleton.getInstance();
 		System.out.println("PASSOU! Command");
-		String resposta = faixada.emprestimo(model.getCodigoUser(), model.getCodigoMat());
-		System.out.println(resposta);
-		return (resposta);
+		faixada.emprestimo(model);
 	}
 }

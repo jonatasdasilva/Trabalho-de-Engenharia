@@ -8,23 +8,34 @@ package comandos;
  *
  */
 public class Modelo {
-	//private String comando;
+	private String comando;
+
+
 	private short codigoUser;
 	private short codigoMat;
 	
 	/**
 	 * 
 	 */
-	public Modelo(short codU, short codM) {
+	public Modelo(String command, short codU, short codM) {
 		// TODO Auto-generated constructor stub
-		//this.comando = comand;
+		this.comando = command;
 		this.codigoUser = codU;
 		this.codigoMat = codM;	
 	}
+	/**
+	 * @return the comando
+	 */
+	public String getComando() {
+		return comando;
+	}
 
-	//public String getComando() {
-	//	return comando;
-	//}
+	/**
+	 * @param comando the comando to set
+	 */
+	public void setComando(String comando) {
+		this.comando = comando;
+	}
 
 	public short getCodigoUser() {
 		return codigoUser;
